@@ -1,0 +1,731 @@
+// ============================================================================
+// KitsPage.ui - KITS SELECTION MENU (v2.0)
+// ============================================================================
+// Native Hytale UI for the Kits plugin - Professional Hytale-style design
+// Path: src/main/resources/Common/UI/Custom/Pages/KitsPage.ui
+// ============================================================================
+
+$C = "../Common.ui";
+
+// ===== ITEM GRID STYLE (Matches Hytale native style) =====
+
+@KitItemGridStyle = ItemGridStyle(
+  SlotSize: 50,
+  SlotSpacing: 4,
+  SlotIconSize: 44,
+  SlotBackground: (Color: #1a2332),
+  SlotBorderColor: #3d4f5f
+);
+
+// ===== CUSTOM STYLES =====
+
+@PageTitleStyle = LabelStyle(
+  FontSize: 26,
+  RenderBold: true,
+  RenderUppercase: true,
+  TextColor: #F0E68C,
+  HorizontalAlignment: Center,
+  LetterSpacing: 2
+);
+
+@PageDescriptionStyle = LabelStyle(
+  FontSize: 13,
+  TextColor: #8899aa,
+  HorizontalAlignment: Center,
+  Wrap: true
+);
+
+@KitNameStyle = LabelStyle(
+  FontSize: 24,
+  RenderBold: true,
+  RenderUppercase: true,
+  TextColor: #F0E68C,
+  HorizontalAlignment: Center,
+  LetterSpacing: 1
+);
+
+@KitNameVipStyle = LabelStyle(
+  FontSize: 24,
+  RenderBold: true,
+  RenderUppercase: true,
+  TextColor: #FFD700,
+  HorizontalAlignment: Center,
+  LetterSpacing: 1
+);
+
+@KitDescriptionStyle = LabelStyle(
+  FontSize: 12,
+  TextColor: #96a9be,
+  HorizontalAlignment: Center,
+  Wrap: true
+);
+
+@CooldownLabelStyle = LabelStyle(
+  FontSize: 11,
+  TextColor: #8899aa,
+  HorizontalAlignment: Center
+);
+
+@CooldownValueStyle = LabelStyle(
+  FontSize: 13,
+  RenderBold: true,
+  TextColor: #e8a83c,
+  HorizontalAlignment: Center
+);
+
+@StatusAvailableStyle = LabelStyle(
+  FontSize: 13,
+  RenderBold: true,
+  TextColor: #7dd87d,
+  HorizontalAlignment: Center,
+  RenderUppercase: true
+);
+
+@StatusCooldownStyle = LabelStyle(
+  FontSize: 13,
+  RenderBold: true,
+  TextColor: #d87d7d,
+  HorizontalAlignment: Center,
+  RenderUppercase: true
+);
+
+@SectionHeaderStyle = LabelStyle(
+  FontSize: 11,
+  RenderBold: true,
+  RenderUppercase: true,
+  TextColor: #96a9be,
+  HorizontalAlignment: Center
+);
+
+@SectionHeaderVipStyle = LabelStyle(
+  FontSize: 11,
+  RenderBold: true,
+  RenderUppercase: true,
+  TextColor: #e8a83c,
+  HorizontalAlignment: Center
+);
+
+@ItemNameStyle = LabelStyle(
+  FontSize: 9,
+  TextColor: #b4c8c9,
+  HorizontalAlignment: Center,
+  Wrap: true
+);
+
+@ItemQtyStyle = LabelStyle(
+  FontSize: 10,
+  RenderBold: true,
+  TextColor: #e8a83c,
+  HorizontalAlignment: Center
+);
+
+// ===== MAIN PAGE =====
+
+$C.@PageOverlay #KitsPageRoot {
+
+  // Main decorated container
+  $C.@DecoratedContainer #MainContainer {
+    Anchor: (Width: 820, Height: 640);
+
+    // ===== HEADER TITLE =====
+    #Title {
+      $C.@Title {
+        @Text = "SISTEMA DE KITS";
+      }
+    }
+
+    // ===== CONTENT AREA =====
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 20, Top: 15);
+
+      // ----- Page Description Header -----
+      Group #HeaderSection {
+        Anchor: (Height: 45, Bottom: 10);
+        LayoutMode: Top;
+
+        Label {
+          Style: @PageDescriptionStyle;
+          Text: "Bem-vindo ao Sistema de Kits! Escolha um dos kits abaixo para equipar";
+          Anchor: (Height: 20);
+        }
+        Label {
+          Style: @PageDescriptionStyle;
+          Text: "seu personagem com itens e ferramentas essenciais para sua jornada.";
+          Anchor: (Height: 20);
+        }
+      }
+
+      // Fancy separator
+      $C.@PanelSeparatorFancy {
+        @Anchor = (Bottom: 15);
+      }
+
+      // ----- KITS CONTAINER -----
+      Group #KitsContainer {
+        LayoutMode: Center;
+        Anchor: (Height: 475);
+
+        // =========================================================
+        // KIT BASICO CARD
+        // =========================================================
+        Group #BasicKitCard {
+          Anchor: (Width: 350, Right: 10);
+          Background: (TexturePath: "../Common/ContainerFullPatch.png", Border: 20);
+          LayoutMode: Top;
+          Padding: (Full: 15, Top: 12);
+
+          // Kit Banner/Icon Area
+          Group #BasicBannerArea {
+            Anchor: (Height: 155, Bottom: 8);
+            LayoutMode: Middle;
+
+            // Banner image (190x165 original)
+            Group {
+              Anchor: (Width: 175, Height: 152);
+              Background: "basico.png";
+            }
+          }
+
+          // Kit Name
+          Group {
+            Anchor: (Height: 32, Bottom: 2);
+            LayoutMode: Middle;
+
+            Label #BasicKitName {
+              Style: @KitNameStyle;
+              Text: "KIT BASICO";
+            }
+          }
+
+          // Description
+          Group {
+            Anchor: (Height: 28, Bottom: 8);
+            LayoutMode: Middle;
+            Padding: (Horizontal: 8);
+
+            Label #BasicKitDescription {
+              Style: @KitDescriptionStyle;
+              Text: "Kit inicial com ferramentas de ferro para comecar sua aventura";
+            }
+          }
+
+          // Separator
+          Group {
+            Anchor: (Height: 1, Bottom: 10);
+            Background: (Color: #2b3542);
+          }
+
+          // Items section header
+          Group {
+            Anchor: (Height: 18, Bottom: 6);
+            LayoutMode: Middle;
+
+            Label {
+              Style: @SectionHeaderStyle;
+              Text: "ITENS INCLUSOS";
+            }
+          }
+
+          // Items Grid - Using ItemGrid for proper item display
+          Group #BasicItemsContainer {
+            Anchor: (Height: 75, Bottom: 10);
+            LayoutMode: Center;
+
+            // Item slots with icons
+            Group #BasicItem1 {
+              Anchor: (Width: 55, Height: 70, Right: 6);
+              LayoutMode: Top;
+
+              // Item icon slot
+              Group #BasicItem1Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #3d4f5f;
+                LayoutMode: Middle;
+
+                // Item icon placeholder (set via Java)
+                ItemGrid #BasicItem1Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #BasicItem1Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+
+            Group #BasicItem2 {
+              Anchor: (Width: 55, Height: 70, Right: 6);
+              LayoutMode: Top;
+
+              Group #BasicItem2Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #3d4f5f;
+                LayoutMode: Middle;
+
+                ItemGrid #BasicItem2Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #BasicItem2Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+
+            Group #BasicItem3 {
+              Anchor: (Width: 55, Height: 70, Right: 6);
+              LayoutMode: Top;
+
+              Group #BasicItem3Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #3d4f5f;
+                LayoutMode: Middle;
+
+                ItemGrid #BasicItem3Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #BasicItem3Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+
+            Group #BasicItem4 {
+              Anchor: (Width: 55, Height: 70, Right: 6);
+              LayoutMode: Top;
+
+              Group #BasicItem4Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #3d4f5f;
+                LayoutMode: Middle;
+
+                ItemGrid #BasicItem4Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #BasicItem4Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+
+            Group #BasicItem5 {
+              Anchor: (Width: 55, Height: 70);
+              LayoutMode: Top;
+
+              Group #BasicItem5Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #3d4f5f;
+                LayoutMode: Middle;
+
+                ItemGrid #BasicItem5Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #BasicItem5Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+          }
+
+          // Cooldown info
+          Group {
+            Anchor: (Height: 32, Bottom: 8);
+            LayoutMode: Top;
+
+            Label {
+              Style: @CooldownLabelStyle;
+              Text: "Tempo de espera entre usos:";
+              Anchor: (Height: 15);
+            }
+            Label #BasicCooldownValue {
+              Style: @CooldownValueStyle;
+              Text: "5 minutos";
+              Anchor: (Height: 16);
+            }
+          }
+
+          // Status indicator
+          Group {
+            Anchor: (Height: 22, Bottom: 10);
+            LayoutMode: Middle;
+
+            Label #BasicStatusLabel {
+              Style: @StatusAvailableStyle;
+              Text: "DISPONIVEL";
+            }
+          }
+
+          // Claim button
+          Group {
+            Anchor: (Height: 45);
+            LayoutMode: Middle;
+
+            $C.@TextButton #BtnClaimBasic {
+              @Text = "RESGATAR KIT";
+              @Anchor = (Width: 180, Height: 40);
+            }
+          }
+        }
+
+        // =========================================================
+        // KIT VIP CARD
+        // =========================================================
+        Group #VipKitCard {
+          Anchor: (Width: 350);
+          Background: (TexturePath: "../Common/ContainerFullPatch.png", Border: 20);
+          LayoutMode: Top;
+          Padding: (Full: 15, Top: 12);
+
+          // Kit Banner/Icon Area
+          Group #VipBannerArea {
+            Anchor: (Height: 155, Bottom: 8);
+            LayoutMode: Middle;
+
+            // Banner image (190x165 original)
+            Group {
+              Anchor: (Width: 175, Height: 152);
+              Background: "vip.png";
+            }
+          }
+
+          // VIP Crown/Name area
+          Group {
+            Anchor: (Height: 32, Bottom: 2);
+            LayoutMode: Middle;
+
+            Label #VipKitName {
+              Style: @KitNameVipStyle;
+              Text: "KIT VIP";
+            }
+          }
+
+          // Description
+          Group {
+            Anchor: (Height: 28, Bottom: 8);
+            LayoutMode: Middle;
+            Padding: (Horizontal: 8);
+
+            Label #VipKitDescription {
+              Style: @KitDescriptionStyle;
+              Text: "Kit exclusivo com equipamentos de mithril para jogadores VIP";
+            }
+          }
+
+          // Separator with gold tint
+          Group {
+            Anchor: (Height: 1, Bottom: 10);
+            Background: (Color: #5c4a28);
+          }
+
+          // Items section header
+          Group {
+            Anchor: (Height: 18, Bottom: 6);
+            LayoutMode: Middle;
+
+            Label {
+              Style: @SectionHeaderVipStyle;
+              Text: "ITENS EXCLUSIVOS";
+            }
+          }
+
+          // Items Grid
+          Group #VipItemsContainer {
+            Anchor: (Height: 75, Bottom: 10);
+            LayoutMode: Center;
+
+            Group #VipItem1 {
+              Anchor: (Width: 55, Height: 70, Right: 6);
+              LayoutMode: Top;
+
+              Group #VipItem1Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #e8a83c;
+                LayoutMode: Middle;
+
+                ItemGrid #VipItem1Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #VipItem1Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+
+            Group #VipItem2 {
+              Anchor: (Width: 55, Height: 70, Right: 6);
+              LayoutMode: Top;
+
+              Group #VipItem2Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #e8a83c;
+                LayoutMode: Middle;
+
+                ItemGrid #VipItem2Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #VipItem2Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+
+            Group #VipItem3 {
+              Anchor: (Width: 55, Height: 70, Right: 6);
+              LayoutMode: Top;
+
+              Group #VipItem3Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #e8a83c;
+                LayoutMode: Middle;
+
+                ItemGrid #VipItem3Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #VipItem3Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+
+            Group #VipItem4 {
+              Anchor: (Width: 55, Height: 70, Right: 6);
+              LayoutMode: Top;
+
+              Group #VipItem4Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #e8a83c;
+                LayoutMode: Middle;
+
+                ItemGrid #VipItem4Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #VipItem4Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+
+            Group #VipItem5 {
+              Anchor: (Width: 55, Height: 70);
+              LayoutMode: Top;
+
+              Group #VipItem5Icon {
+                Anchor: (Width: 50, Height: 50, Bottom: 2);
+                Background: (Color: #1a2332);
+                OutlineSize: 1;
+                OutlineColor: #e8a83c;
+                LayoutMode: Middle;
+
+                ItemGrid #VipItem5Grid {
+                  SlotsPerRow: 1;
+                  RenderItemQualityBackground: false;
+                  InfoDisplay: None;
+                  Style: (
+                    SlotSize: 48,
+                    SlotSpacing: 0,
+                    SlotIconSize: 40
+                  );
+                }
+              }
+              Label #VipItem5Qty {
+                Style: @ItemQtyStyle;
+                Text: "x1";
+                Anchor: (Height: 16);
+              }
+            }
+          }
+
+          // Cooldown info
+          Group {
+            Anchor: (Height: 32, Bottom: 8);
+            LayoutMode: Top;
+
+            Label {
+              Style: @CooldownLabelStyle;
+              Text: "Tempo de espera entre usos:";
+              Anchor: (Height: 15);
+            }
+            Label #VipCooldownValue {
+              Style: @CooldownValueStyle;
+              Text: "3 minutos";
+              Anchor: (Height: 16);
+            }
+          }
+
+          // Status indicator
+          Group {
+            Anchor: (Height: 22, Bottom: 10);
+            LayoutMode: Middle;
+
+            Label #VipStatusLabel {
+              Style: @StatusAvailableStyle;
+              Text: "DISPONIVEL";
+            }
+          }
+
+          // Claim button - VIP gold style
+          Group {
+            Anchor: (Height: 45);
+            LayoutMode: Middle;
+
+            $C.@TextButton #BtnClaimVip {
+              @Text = "RESGATAR KIT VIP";
+              @Anchor = (Width: 200, Height: 40);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ===== CONFIRMATION POPUP (hidden by default) =====
+  Group #ConfirmPopup {
+    Visible: false;
+    Background: #000000(0.85);
+    LayoutMode: Middle;
+
+    Group #PopupContainer {
+      Anchor: (Width: 380, Height: 220);
+      LayoutMode: Top;
+      Background: (TexturePath: "../Common/ContainerFullPatch.png", Border: 20);
+      Padding: (Full: 30);
+
+      // Success checkmark icon
+      Group {
+        Anchor: (Height: 50, Bottom: 12);
+        LayoutMode: Middle;
+
+        Group {
+          Anchor: (Width: 48, Height: 48);
+          Background: "Memories/Checkmark.png";
+        }
+      }
+
+      // Popup title
+      Label #PopupTitle {
+        Style: (FontSize: 20, RenderBold: true, TextColor: #7dd87d, HorizontalAlignment: Center, RenderUppercase: true);
+        Text: "KIT RESGATADO!";
+        Anchor: (Height: 28, Bottom: 12);
+      }
+
+      // Message
+      Label #PopupMessage {
+        Style: (FontSize: 13, TextColor: #96a9be, HorizontalAlignment: Center, Wrap: true);
+        Text: "Voce recebeu o Kit Basico com sucesso!";
+        Anchor: (Height: 35, Bottom: 15);
+      }
+
+      // Close button
+      Group {
+        Anchor: (Height: 42);
+        LayoutMode: Middle;
+
+        $C.@SecondaryTextButton #BtnPopupClose {
+          @Text = "FECHAR";
+          @Anchor = (Width: 130, Height: 36);
+        }
+      }
+    }
+  }
+}
+
+// Back button at bottom left
+$C.@BackButton {}

@@ -4,6 +4,7 @@ import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.Inventory;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.inventory.transaction.ItemStackTransaction;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.squashcompany.kits.kits.config.KitsConfig;
 
 import java.util.HashMap;
@@ -33,10 +34,11 @@ public class KitManager {
      * Give a kit to a player.
      *
      * @param player The player to give the kit to
+     * @param playerRef The player reference for UUID
      * @param kit The kit definition
      * @return true if successful, false if inventory is full
      */
-    public boolean giveKit(Player player, KitsConfig.KitDefinition kit) {
+    public boolean giveKit(Player player, PlayerRef playerRef, KitsConfig.KitDefinition kit) {
         Inventory inventory = player.getInventory();
 
         // Give all items from the kit
@@ -51,8 +53,8 @@ public class KitManager {
             }
         }
 
-        // Set cooldown
-        setCooldown(player.getUuid().toString(), kit.getId(), kit.getCooldownSeconds());
+        // Set cooldown using PlayerRef UUID (not deprecated)
+        setCooldown(playerRef.getUuid().toString(), kit.getId(), kit.getCooldownSeconds());
 
         return true;
     }

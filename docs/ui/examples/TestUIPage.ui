@@ -1,0 +1,1071 @@
+// ============================================================================
+// TestUIPage.ui - COMPLETE COMMON ASSETS SHOWCASE FOR HYTALE
+// ============================================================================
+// This file demonstrates ALL available visual elements from Hytale's Common.ui
+// for reference and UI modding learning.
+//
+// Path: src/main/resources/Common/UI/Custom/Pages/TestUIPage.ui
+// ============================================================================
+
+$C = "../Common.ui";
+
+// ===== CUSTOM TEXT STYLES =====
+// Define reusable label styles at the top of your file
+@PageTitleStyle = LabelStyle(
+  FontSize: 28,
+  RenderBold: true,
+  RenderUppercase: true,
+  TextColor: #F0E68C,
+  HorizontalAlignment: Center,
+  LetterSpacing: 2
+);
+
+@SectionHeaderStyle = LabelStyle(
+  FontSize: 16,
+  RenderBold: true,
+  RenderUppercase: true,
+  TextColor: #ccb588,
+  LetterSpacing: 1
+);
+
+@SubSectionStyle = LabelStyle(
+  FontSize: 13,
+  RenderBold: true,
+  TextColor: #b4c8c9
+);
+
+@DescriptionStyle = LabelStyle(
+  FontSize: 12,
+  TextColor: #8899aa,
+  Wrap: true
+);
+
+@ValueLabelStyle = LabelStyle(
+  FontSize: 14,
+  TextColor: #96a9be,
+  HorizontalAlignment: Center
+);
+
+@HighlightStyle = LabelStyle(
+  FontSize: 14,
+  RenderBold: true,
+  TextColor: #7dd87d
+);
+
+// ===== MAIN PAGE =====
+$C.@PageOverlay #TestUIRoot {
+
+  // Main decorated container (with runes in header!)
+  $C.@DecoratedContainer #MainContainer {
+    Anchor: (Width: 800, Height: 650);
+
+    // ===== CONTAINER TITLE =====
+    #Title {
+      $C.@Title {
+        @Text = "HYTALE UI SHOWCASE";
+      }
+    }
+
+    // ===== MAIN CONTENT =====
+    #Content {
+      LayoutMode: Top;
+
+      // ----- PAGE HEADER -----
+      Group #PageHeader {
+        LayoutMode: Top;
+        Anchor: (Bottom: 10);
+
+        Label {
+          Style: @DescriptionStyle;
+          Text: "Complete demonstration of Common Assets available for UI modding";
+          Anchor: (Height: 20);
+        }
+      }
+
+      // Decorated separator using template
+      $C.@PanelSeparatorFancy { 
+        @Anchor = (Bottom: 12); 
+      }
+
+      // ----- SCROLL AREA WITH ALL CONTENT -----
+      Group #ScrollArea {
+        LayoutMode: TopScrolling;
+        ScrollbarStyle: $C.@DefaultScrollbarStyle;
+        Anchor: (Height: 480);
+
+        // =========================================================
+        // SECTION 1: BUTTONS
+        // =========================================================
+        Group #ButtonsSection {
+          LayoutMode: Top;
+          Anchor: (Bottom: 20);
+
+          Label {
+            Style: @SectionHeaderStyle;
+            Text: ">> BUTTONS <<";
+            Anchor: (Height: 25, Bottom: 8);
+          }
+
+          // ----- Main Buttons -----
+          Group {
+            LayoutMode: Top;
+            Anchor: (Bottom: 10);
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Main Buttons (Default Height: 44px)";
+              Anchor: (Height: 20, Bottom: 5);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 50);
+
+              $C.@TextButton #BtnPrimary {
+                @Text = "PRIMARY";
+                @Anchor = (Width: 140, Right: 8);
+              }
+
+              $C.@SecondaryTextButton #BtnSecondary {
+                @Text = "SECONDARY";
+                @Anchor = (Width: 150, Right: 8);
+              }
+
+              $C.@TertiaryTextButton #BtnTertiary {
+                @Text = "TERTIARY";
+                @Anchor = (Width: 140, Right: 8);
+              }
+
+              $C.@CancelTextButton #BtnDestructive {
+                @Text = "CANCEL";
+                @Anchor = (Width: 120);
+              }
+            }
+          }
+
+          // ----- Small Buttons -----
+          Group {
+            LayoutMode: Top;
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Small Buttons (Height: 32px)";
+              Anchor: (Height: 20, Bottom: 5);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 40);
+
+              $C.@SmallSecondaryTextButton #BtnSmallSec {
+                @Text = "SMALL SECONDARY";
+                @Anchor = (Width: 180, Right: 8);
+              }
+
+              $C.@SmallTertiaryTextButton #BtnSmallTer {
+                @Text = "SMALL TERTIARY";
+                @Anchor = (Width: 170, Right: 8);
+              }
+            }
+          }
+        }
+
+        // Simple separator - using color directly
+        Group {
+          Anchor: (Height: 1, Bottom: 15);
+          Background: (Color: #2b3542);
+        }
+
+        // =========================================================
+        // SECTION 2: INPUTS
+        // =========================================================
+        Group #InputsSection {
+          LayoutMode: Top;
+          Anchor: (Bottom: 20);
+
+          Label {
+            Style: @SectionHeaderStyle;
+            Text: ">> INPUTS AND CONTROLS <<";
+            Anchor: (Height: 25, Bottom: 8);
+          }
+
+          // ----- TextField -----
+          Group {
+            LayoutMode: Left;
+            Anchor: (Height: 70, Bottom: 10);
+
+            Group {
+              Anchor: (Width: 250, Right: 20);
+              LayoutMode: Top;
+
+              Label {
+                Style: @SubSectionStyle;
+                Text: "TextField (@TextField)";
+                Anchor: (Height: 20, Bottom: 5);
+              }
+
+              $C.@TextField #InputText {
+                @Anchor = (Height: 38);
+                Value: "Type here...";
+                PlaceholderText: "Placeholder text";
+              }
+            }
+
+            Group {
+              Anchor: (Width: 200, Right: 20);
+              LayoutMode: Top;
+
+              Label {
+                Style: @SubSectionStyle;
+                Text: "NumberField";
+                Anchor: (Height: 20, Bottom: 5);
+              }
+
+              $C.@NumberField #InputNumber {
+                @Anchor = (Height: 38);
+                Value: 42;
+              }
+            }
+          }
+
+          // ----- Slider -----
+          Group {
+            LayoutMode: Left;
+            Anchor: (Height: 70, Bottom: 10);
+
+            Group {
+              Anchor: (Width: 300, Right: 20);
+              LayoutMode: Top;
+
+              Label {
+                Style: @SubSectionStyle;
+                Text: "Slider (@DefaultSliderStyle)";
+                Anchor: (Height: 20, Bottom: 5);
+              }
+
+              Group {
+                LayoutMode: Left;
+                Anchor: (Height: 40);
+
+                Slider #TestSlider {
+                  Anchor: (Height: 20, Width: 220, Right: 15);
+                  Style: $C.@DefaultSliderStyle;
+                  Min: 0;
+                  Max: 100;
+                  Value: 75;
+                  Step: 5;
+                }
+
+                Label #SliderValue {
+                  Style: @ValueLabelStyle;
+                  Text: "75%";
+                  Anchor: (Width: 50);
+                }
+              }
+            }
+          }
+
+          // ----- Checkbox -----
+          Group {
+            LayoutMode: Left;
+            Anchor: (Height: 50, Bottom: 10);
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "CheckBox:";
+              Anchor: (Width: 100, Right: 10);
+            }
+
+            $C.@CheckBox #TestCheckbox1 {
+              Value: true;
+            }
+
+            Label {
+              Style: @DescriptionStyle;
+              Text: "Checked";
+              Anchor: (Width: 80, Left: 8, Right: 20);
+            }
+
+            $C.@CheckBox #TestCheckbox2 {
+              Value: false;
+            }
+
+            Label {
+              Style: @DescriptionStyle;
+              Text: "Unchecked";
+              Anchor: (Width: 100, Left: 8);
+            }
+          }
+
+          // ----- Dropdown -----
+          Group {
+            LayoutMode: Top;
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "DropdownBox (@DropdownBox)";
+              Anchor: (Height: 20, Bottom: 5);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 40);
+
+              $C.@DropdownBox #TestDropdown {
+                @Anchor = (Width: 280, Right: 20);
+              }
+
+              Label #DropdownLabel {
+                Style: @DescriptionStyle;
+                Text: "Select an option";
+              }
+            }
+          }
+        }
+
+        // Separator
+        Group {
+          Anchor: (Height: 1, Bottom: 15);
+          Background: (Color: #2b3542);
+        }
+
+        // =========================================================
+        // SECTION 3: CONTAINERS AND BACKGROUNDS
+        // =========================================================
+        Group #ContainersSection {
+          LayoutMode: Top;
+          Anchor: (Bottom: 20);
+
+          Label {
+            Style: @SectionHeaderStyle;
+            Text: ">> CONTAINERS AND PANELS <<";
+            Anchor: (Height: 25, Bottom: 8);
+          }
+
+          Group {
+            LayoutMode: Left;
+            Anchor: (Height: 120, Bottom: 10);
+
+            // Basic Panel
+            Group {
+              Anchor: (Width: 200, Right: 15);
+              LayoutMode: Top;
+
+              Label {
+                Style: @SubSectionStyle;
+                Text: "@Panel";
+                Anchor: (Height: 20, Bottom: 5);
+              }
+
+              $C.@Panel {
+                Anchor: (Height: 80);
+                Padding: (Full: 10);
+
+                Label {
+                  Style: @DescriptionStyle;
+                  Text: "ContainerFullPatch.png with border";
+                }
+              }
+            }
+
+            // Container without runes
+            Group {
+              Anchor: (Width: 250, Right: 15);
+              LayoutMode: Top;
+
+              Label {
+                Style: @SubSectionStyle;
+                Text: "@Container (no runes)";
+                Anchor: (Height: 20, Bottom: 5);
+              }
+
+              $C.@Container {
+                Anchor: (Height: 80);
+
+                #Title {
+                  $C.@Title {
+                    @Text = "TITLE";
+                    @Alignment = Center;
+                  }
+                }
+
+                #Content {
+                  Label {
+                    Style: @DescriptionStyle;
+                    Text: "Header without runes";
+                  }
+                }
+              }
+            }
+          }
+
+          // Available backgrounds
+          Group {
+            LayoutMode: Top;
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Available Backgrounds:";
+              Anchor: (Height: 20, Bottom: 5);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 50);
+
+              // ContainerFullPatch
+              Group {
+                Anchor: (Width: 150, Height: 40, Right: 10);
+                Background: (TexturePath: "../Common/ContainerFullPatch.png", Border: 20);
+                Padding: (Full: 5);
+
+                Label {
+                  Style: (FontSize: 10, TextColor: #aaaaaa, HorizontalAlignment: Center);
+                  Text: "FullPatch";
+                }
+              }
+
+              // ContainerPatch
+              Group {
+                Anchor: (Width: 150, Height: 40, Right: 10);
+                Background: (TexturePath: "../Common/ContainerPatch.png", Border: 12);
+                Padding: (Full: 5);
+
+                Label {
+                  Style: (FontSize: 10, TextColor: #aaaaaa, HorizontalAlignment: Center);
+                  Text: "Patch";
+                }
+              }
+
+              // InputBox as background
+              Group {
+                Anchor: (Width: 150, Height: 40, Right: 10);
+                Background: $C.@InputBoxBackground;
+                Padding: (Full: 5);
+
+                Label {
+                  Style: (FontSize: 10, TextColor: #aaaaaa, HorizontalAlignment: Center);
+                  Text: "InputBox";
+                }
+              }
+            }
+          }
+        }
+
+        // Separator
+        Group {
+          Anchor: (Height: 1, Bottom: 15);
+          Background: (Color: #2b3542);
+        }
+
+        // =========================================================
+        // SECTION 4: DECORATIVE ELEMENTS
+        // =========================================================
+        Group #DecorativeSection {
+          LayoutMode: Top;
+          Anchor: (Bottom: 20);
+
+          Label {
+            Style: @SectionHeaderStyle;
+            Text: ">> DECORATIVE ELEMENTS <<";
+            Anchor: (Height: 25, Bottom: 8);
+          }
+
+          // Separators
+          Group {
+            LayoutMode: Top;
+            Anchor: (Bottom: 15);
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Separators:";
+              Anchor: (Height: 20, Bottom: 8);
+            }
+
+            Label {
+              Style: @DescriptionStyle;
+              Text: "Simple line (color #2b3542):";
+              Anchor: (Height: 18, Bottom: 3);
+            }
+
+            // Simple line using color
+            Group {
+              Anchor: (Height: 1, Bottom: 10);
+              Background: (Color: #2b3542);
+            }
+
+            Label {
+              Style: @DescriptionStyle;
+              Text: "Decorated separator:";
+              Anchor: (Height: 18, Bottom: 3);
+            }
+
+            // Manual fancy separator
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 8, Bottom: 10);
+
+              Group {
+                FlexWeight: 1;
+                Background: "../Common/ContainerPanelSeparatorFancyLine.png";
+              }
+
+              Group {
+                Anchor: (Width: 11);
+                Background: "../Common/ContainerPanelSeparatorFancyDecoration.png";
+              }
+
+              Group {
+                FlexWeight: 1;
+                Background: "../Common/ContainerPanelSeparatorFancyLine.png";
+              }
+            }
+
+            Label {
+              Style: @DescriptionStyle;
+              Text: "Vertical separator:";
+              Anchor: (Height: 18, Bottom: 3);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 40);
+
+              Group {
+                Anchor: (Width: 100, Height: 40);
+                Background: (TexturePath: "../Common/ContainerFullPatch.png", Border: 20);
+              }
+
+              Group {
+                Background: (TexturePath: "../Common/ContainerVerticalSeparator.png");
+                Anchor: (Width: 6, Top: -2);
+              }
+
+              Group {
+                Anchor: (Width: 100, Height: 40);
+                Background: (TexturePath: "../Common/ContainerFullPatch.png", Border: 20);
+              }
+            }
+          }
+
+          // Loading spinner
+          Group {
+            LayoutMode: Left;
+            Anchor: (Height: 60);
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Loading Spinner:";
+              Anchor: (Width: 150, Right: 20);
+            }
+
+            Sprite #LoadingSpinner {
+              Anchor: (Width: 32, Height: 32);
+              TexturePath: "../Common/Spinner.png";
+              Frame: (Width: 32, Height: 32, PerRow: 8, Count: 72);
+              FramesPerSecond: 30;
+            }
+
+            Label {
+              Style: @DescriptionStyle;
+              Text: "Animated sprite - Common/Spinner.png";
+              Anchor: (Left: 20);
+            }
+          }
+        }
+
+        // Separator
+        Group {
+          Anchor: (Height: 1, Bottom: 15);
+          Background: (Color: #2b3542);
+        }
+
+        // =========================================================
+        // SECTION 5: PROGRESS AND FEEDBACK
+        // =========================================================
+        Group #ProgressSection {
+          LayoutMode: Top;
+          Anchor: (Bottom: 20);
+
+          Label {
+            Style: @SectionHeaderStyle;
+            Text: ">> PROGRESS AND STATUS <<";
+            Anchor: (Height: 25, Bottom: 8);
+          }
+
+          // Progress Bar
+          Group {
+            LayoutMode: Top;
+            Anchor: (Bottom: 15);
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Animated Progress Bar:";
+              Anchor: (Height: 20, Bottom: 5);
+            }
+
+            // Bar 1 - Animated with native ProgressBar
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 30);
+
+              // Container with background
+              Group {
+                Anchor: (Width: 300, Height: 12, Right: 15);
+                Background: (TexturePath: "../Common/ProgressBar.png", Border: 4);
+
+                ProgressBar #AnimatedProgressBar {
+                  Anchor: (Width: 300, Height: 12);
+                  BarTexturePath: "../Common/ProgressBarFill.png";
+                  Value: 0;
+                }
+              }
+
+              Label #ProgressLabel1 {
+                Style: @HighlightStyle;
+                Text: "0%";
+                Anchor: (Width: 50);
+              }
+            }
+
+            // Bar 2 - Static 35%
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 30, Top: 8);
+
+              Group #ProgressBarContainer2 {
+                Anchor: (Width: 300, Height: 12, Right: 15);
+                Background: (TexturePath: "../Common/ProgressBar.png", Border: 4);
+
+                Group #ProgressBarFill2 {
+                  Anchor: (Width: 105, Height: 12);
+                  Background: (TexturePath: "../Common/ProgressBarFill.png", Border: 4);
+                }
+              }
+
+              Label #ProgressLabel2 {
+                Style: (FontSize: 14, RenderBold: true, TextColor: #e8a83c);
+                Text: "35%";
+                Anchor: (Width: 50);
+              }
+            }
+
+            // Button to start animation
+            Group {
+              LayoutMode: Top;
+              Anchor: (Top: 15);
+
+              Label {
+                Style: @SubSectionStyle;
+                Text: "Click to animate progress bar (4 seconds):";
+                Anchor: (Height: 20, Bottom: 5);
+              }
+
+              Group {
+                LayoutMode: Left;
+                Anchor: (Height: 44);
+
+                $C.@TextButton #BtnStartProgress {
+                  @Text = "START PROGRESS";
+                  @Anchor = (Width: 220);
+                }
+
+                $C.@SmallSecondaryTextButton #BtnResetProgress {
+                  @Text = "RESET";
+                  @Anchor = (Width: 120, Left: 10);
+                }
+              }
+            }
+          }
+
+          // Status with colors
+          Group {
+            LayoutMode: Top;
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Status Indicators (colors):";
+              Anchor: (Height: 20, Bottom: 5);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 30);
+
+              Group {
+                Anchor: (Width: 20, Height: 20, Right: 5);
+                Background: (Color: #7dd87d);
+              }
+              Label {
+                Style: (FontSize: 12, TextColor: #7dd87d);
+                Text: "Online";
+                Anchor: (Width: 60, Right: 15);
+              }
+
+              Group {
+                Anchor: (Width: 20, Height: 20, Right: 5);
+                Background: (Color: #d8d87d);
+              }
+              Label {
+                Style: (FontSize: 12, TextColor: #d8d87d);
+                Text: "Away";
+                Anchor: (Width: 60, Right: 15);
+              }
+
+              Group {
+                Anchor: (Width: 20, Height: 20, Right: 5);
+                Background: (Color: #d87d7d);
+              }
+              Label {
+                Style: (FontSize: 12, TextColor: #d87d7d);
+                Text: "Offline";
+                Anchor: (Width: 60);
+              }
+            }
+          }
+        }
+
+        // Final fancy separator
+        Group {
+          LayoutMode: Left;
+          Anchor: (Height: 8, Bottom: 15);
+
+          Group {
+            FlexWeight: 1;
+            Background: "../Common/ContainerPanelSeparatorFancyLine.png";
+          }
+
+          Group {
+            Anchor: (Width: 11);
+            Background: "../Common/ContainerPanelSeparatorFancyDecoration.png";
+          }
+
+          Group {
+            FlexWeight: 1;
+            Background: "../Common/ContainerPanelSeparatorFancyLine.png";
+          }
+        }
+
+        // =========================================================
+        // SECTION 6: TOOLTIPS AND POPUPS
+        // =========================================================
+        Group #TooltipsSection {
+          LayoutMode: Top;
+          Anchor: (Bottom: 20);
+
+          Label {
+            Style: @SectionHeaderStyle;
+            Text: ">> TOOLTIPS AND POPUPS <<";
+            Anchor: (Height: 25, Bottom: 8);
+          }
+
+          // Hytale tooltip (on Group)
+          Group {
+            LayoutMode: Top;
+            Anchor: (Bottom: 15);
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "TextTooltip (hover over icons):";
+              Anchor: (Height: 20, Bottom: 8);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 50);
+
+              // WIP icon with tooltip
+              Group #IconTooltip1 {
+                Anchor: (Width: 44, Height: 44, Right: 15);
+                Background: "../Common/WIPIcon.png";
+                TooltipText: "Work In Progress - This icon indicates content under development";
+                TextTooltipStyle: $C.@DefaultTextTooltipStyle;
+              }
+
+              // WIP icon with tooltip 2
+              Group #IconTooltip2 {
+                Anchor: (Width: 44, Height: 44, Right: 15);
+                Background: "../Common/WIPIcon.png";
+                TooltipText: "Another example tooltip with different text";
+                TextTooltipStyle: $C.@DefaultTextTooltipStyle;
+              }
+
+              // Small container with tooltip
+              Group #BoxTooltip {
+                Anchor: (Width: 80, Height: 44, Right: 15);
+                Background: (TexturePath: "../Common/TooltipDefaultBackground.png", Border: 12);
+                TooltipText: "This is the default tooltip background from Hytale.";
+                TextTooltipStyle: $C.@DefaultTextTooltipStyle;
+
+                Label {
+                  Style: (FontSize: 11, TextColor: #96a9be, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "HOVER";
+                }
+              }
+            }
+          }
+
+          // Button to open fullscreen popup
+          Group {
+            LayoutMode: Top;
+            Anchor: (Bottom: 15);
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Fullscreen Popup (click to open):";
+              Anchor: (Height: 20, Bottom: 8);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 45);
+
+              $C.@TextButton #BtnOpenPopup {
+                @Text = "OPEN POPUP";
+                @Anchor = (Width: 180);
+              }
+            }
+          }
+        }
+
+        // Separator before color picker
+        $C.@PanelSeparatorFancy {
+          @Anchor = (Bottom: 12, Top: 8);
+        }
+
+        // =========================================================
+        // SECTION 7: COLOR PICKER
+        // =========================================================
+        Group #ColorPickerSection {
+          LayoutMode: Top;
+          Anchor: (Bottom: 20);
+
+          Label {
+            Style: @SectionHeaderStyle;
+            Text: ">> COLOR PICKER <<";
+            Anchor: (Height: 25, Bottom: 8);
+          }
+
+          // ColorPickerDropdownBox
+          Group {
+            LayoutMode: Top;
+            Anchor: (Bottom: 15);
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Color Selector (click to open):";
+              Anchor: (Height: 20, Bottom: 8);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 50);
+
+              // Color Picker 1
+              Group {
+                LayoutMode: Top;
+                Anchor: (Width: 150, Right: 20);
+
+                Label {
+                  Style: (FontSize: 12, TextColor: #96a9be);
+                  Text: "Primary Color:";
+                  Anchor: (Height: 16, Bottom: 4);
+                }
+
+                ColorPickerDropdownBox #ColorPicker1 {
+                  Anchor: (Width: 120, Height: 32);
+                  Style: $C.@DefaultColorPickerDropdownBoxStyle;
+                  Color: #e8a83c;
+                }
+              }
+
+              // Color Picker 2
+              Group {
+                LayoutMode: Top;
+                Anchor: (Width: 150, Right: 20);
+
+                Label {
+                  Style: (FontSize: 12, TextColor: #96a9be);
+                  Text: "Secondary Color:";
+                  Anchor: (Height: 16, Bottom: 4);
+                }
+
+                ColorPickerDropdownBox #ColorPicker2 {
+                  Anchor: (Width: 120, Height: 32);
+                  Style: $C.@DefaultColorPickerDropdownBoxStyle;
+                  Color: #5a8dd4;
+                }
+              }
+
+              // Color Picker 3
+              Group {
+                LayoutMode: Top;
+                Anchor: (Width: 150);
+
+                Label {
+                  Style: (FontSize: 12, TextColor: #96a9be);
+                  Text: "Accent Color:";
+                  Anchor: (Height: 16, Bottom: 4);
+                }
+
+                ColorPickerDropdownBox #ColorPicker3 {
+                  Anchor: (Width: 120, Height: 32);
+                  Style: $C.@DefaultColorPickerDropdownBoxStyle;
+                  Color: #7dd87d;
+                }
+              }
+            }
+          }
+
+          // Color preview
+          Group {
+            LayoutMode: Top;
+
+            Label {
+              Style: @SubSectionStyle;
+              Text: "Color Preview:";
+              Anchor: (Height: 20, Bottom: 5);
+            }
+
+            Group {
+              LayoutMode: Left;
+              Anchor: (Height: 40);
+
+              Group #ColorPreview1 {
+                Anchor: (Width: 60, Height: 40, Right: 10);
+                Background: (Color: #e8a83c);
+                OutlineSize: 2;
+                OutlineColor: #ffffff(0.3);
+              }
+
+              Group #ColorPreview2 {
+                Anchor: (Width: 60, Height: 40, Right: 10);
+                Background: (Color: #5a8dd4);
+                OutlineSize: 2;
+                OutlineColor: #ffffff(0.3);
+              }
+
+              Group #ColorPreview3 {
+                Anchor: (Width: 60, Height: 40, Right: 20);
+                Background: (Color: #7dd87d);
+                OutlineSize: 2;
+                OutlineColor: #ffffff(0.3);
+              }
+
+              Label {
+                Style: (FontSize: 12, TextColor: #96a9be, VerticalAlignment: Center);
+                Text: "Color pickers open a complete selector with gradient and opacity";
+                Anchor: (Width: 300);
+              }
+            }
+          }
+        }
+
+        // Separator before actions
+        $C.@PanelSeparatorFancy {
+          @Anchor = (Bottom: 12, Top: 8);
+        }
+
+        // =========================================================
+        // SECTION 8: ACTIONS AREA
+        // =========================================================
+        Group #ActionsSection {
+          LayoutMode: Top;
+
+          Label {
+            Style: @SectionHeaderStyle;
+            Text: ">> ACTIONS <<";
+            Anchor: (Height: 25, Bottom: 8);
+          }
+
+          Group {
+            LayoutMode: Left;
+            Anchor: (Height: 55);
+
+            $C.@TextButton #BtnShowMessage {
+              @Text = "SHOW VALUES";
+              @Anchor = (Width: 200, Right: 10);
+            }
+
+            $C.@SecondaryTextButton #BtnReset {
+              @Text = "RESET";
+              @Anchor = (Width: 130, Right: 10);
+            }
+
+            $C.@TertiaryTextButton #BtnExport {
+              @Text = "EXPORT";
+              @Anchor = (Width: 130, Right: 10);
+            }
+
+            $C.@CancelTextButton #BtnClose {
+              @Text = "CLOSE";
+              @Anchor = (Width: 120);
+            }
+          }
+        }
+
+      } // End ScrollArea
+    } // End Content
+  } // End DecoratedContainer
+
+  // =========================================================
+  // POPUP OVERLAY (appears on top of everything)
+  // =========================================================
+  Group #PopupOverlay {
+    Visible: false;
+    Background: #000000(0.85);
+    LayoutMode: Middle;
+
+    // Centered popup container
+    Group #PopupContainer {
+      Anchor: (Width: 500);
+      LayoutMode: Top;
+      Background: (TexturePath: "../Common/TooltipDefaultBackground.png", Border: 24);
+      Padding: (Full: 24);
+
+      // Popup title
+      Label {
+        Style: (FontSize: 22, RenderBold: true, RenderUppercase: true, TextColor: #e1a738, HorizontalAlignment: Center);
+        Text: "MODAL POPUP";
+      }
+
+      // Separator
+      Group {
+        Anchor: (Height: 2, Top: 16, Bottom: 16);
+        Background: (Color: #5e512c);
+      }
+
+      // Content
+      Label {
+        Style: (FontSize: 15, TextColor: #d3dee3, Wrap: true, HorizontalAlignment: Center);
+        Text: "This is a fullscreen popup with darkened overlay. It appears on top of all page content.";
+      }
+
+      Label {
+        Anchor: (Top: 12);
+        Style: (FontSize: 13, TextColor: #96a9be, Wrap: true, HorizontalAlignment: Center);
+        Text: "Click CLOSE to return to the main page.";
+      }
+
+      // Popup buttons
+      Group {
+        LayoutMode: Center;
+        Anchor: (Top: 24, Height: 45);
+
+        $C.@TextButton #PopupConfirmBtn {
+          @Text = "CONFIRM";
+          @Anchor = (Width: 140, Right: 10);
+        }
+
+        $C.@CancelTextButton #PopupCloseBtn {
+          @Text = "CLOSE";
+          @Anchor = (Width: 140, Left: 10);
+        }
+      }
+    }
+  }
+
+} // End PageOverlay
+
+// Standard Hytale back button (bottom-left corner)
+$C.@BackButton {}

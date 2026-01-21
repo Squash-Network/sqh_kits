@@ -19,3 +19,5 @@ logs/
 
 # Runtime
 run/
+reference/
+docs/

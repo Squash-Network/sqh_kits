@@ -1,0 +1,155 @@
+# Hytale Common UI Assets List
+# Path: Common/UI/Custom/Common/
+# Usage in .ui files: "../Common/[filename without @2x]"
+# Example: "../Common/ContainerFullPatch.png"
+
+================================================================================
+BUTTONS (../Common/Buttons/)
+================================================================================
+Primary.png
+Primary_Hovered.png
+Primary_Pressed.png
+Primary_Square.png
+Primary_Square_Hovered.png
+Primary_Square_Pressed.png
+Secondary.png
+Secondary_Hovered.png
+Secondary_Pressed.png
+Tertiary.png
+Tertiary_Hovered.png
+Tertiary_Pressed.png
+Destructive.png
+Destructive_Hovered.png
+Destructive_Pressed.png
+Disabled.png
+
+================================================================================
+CONTAINERS & PANELS
+================================================================================
+ContainerFullPatch.png          # Border: 20 - Main panels, modals
+ContainerPatch.png              # Border: 12 - Secondary panels
+ContainerPanelPatch.png         # Sub-sections
+ContainerPanelLightPatch.png    # Light variant
+ContainerBackgroundSecondary.png
+ContainerHeader.png             # Header with runes
+ContainerHeaderNoRunes.png      # Header without runes
+ContainerDecorationTop.png      # Top ornament
+ContainerDecorationBottom.png   # Bottom ornament
+ContainerSideDecoration.png     # Side ornament
+ContainerTitleArrow.png
+
+================================================================================
+SEPARATORS
+================================================================================
+ContainerPanelSeparatorFancyLine.png       # Decorative line
+ContainerPanelSeparatorFancyDecoration.png # Center ornament (Width: 11)
+ContainerVerticalSeparator.png             # Vertical divider (Width: 6)
+ContainerSectionSeparator.png              # Section separator
+
+================================================================================
+INPUTS
+================================================================================
+InputBox.png                    # Default state
+InputBoxHovered.png             # Hover state
+InputBoxPressed.png             # Pressed state
+InputBoxSelected.png            # Selected/focused state
+ClearInputIcon.png              # Clear button icon
+SearchIcon.png                  # Search icon
+
+================================================================================
+CHECKBOXES
+================================================================================
+CheckBoxFrame.png               # Checkbox frame
+Checkmark.png                   # Check mark icon
+
+================================================================================
+SLIDERS
+================================================================================
+SliderBackground.png            # Slider track
+SliderHandle.png                # Slider thumb
+
+================================================================================
+SCROLLBARS
+================================================================================
+Scrollbar.png                   # Scrollbar track
+ScrollbarHandle.png             # Default state
+ScrollbarHandleHovered.png      # Hover state
+ScrollbarHandleDragged.png      # Dragging state
+
+================================================================================
+DROPDOWNS
+================================================================================
+Dropdown.png                    # Default state
+DropdownHovered.png             # Hover state
+DropdownPressed.png             # Pressed state
+DropdownBox.png                 # Dropdown container
+DropdownCaret.png               # Arrow icon
+DropdownPressedCaret.png        # Pressed arrow icon
+
+================================================================================
+COLOR PICKER
+================================================================================
+ColorPickerButton.png
+ColorPickerDropdownBoxArrow.png
+ColorPickerDropdownBoxBackground.png
+ColorPickerDropdownBoxOverlay.png
+ColorPickerFill.png
+ColorPickerOpacitySelectorBackground.png
+
+================================================================================
+PROGRESS BARS
+================================================================================
+ProgressBar.png                 # Border: 4 - Background
+ProgressBarFill.png             # Border: 4 - Fill
+ProgressBarEffect.png           # Effect overlay
+
+================================================================================
+TOOLTIPS & POPUPS
+================================================================================
+TooltipDefaultBackground.png    # Border: 12-24 - Tooltip/popup background
+Popup.png                       # Popup background
+PopupTitle.png                  # Popup title bar
+PopupItem.png                   # Popup item default
+HoveredPopupItem.png            # Popup item hover
+PressedPopupItem.png            # Popup item pressed
+
+================================================================================
+BACK BUTTON
+================================================================================
+BackButton.png                  # Default state
+BackButtonHovered.png           # Hover state
+BackButtonPressed.png           # Pressed state
+
+================================================================================
+CLOSE BUTTON
+================================================================================
+ContainerCloseButton.png        # Default state
+ContainerCloseButtonHovered.png # Hover state
+ContainerCloseButtonPressed.png # Pressed state
+
+================================================================================
+SECONDARY BUTTON (standalone)
+================================================================================
+SecondaryButton.png
+SecondaryButtonHovered.png
+SecondaryButtonPressed.png
+
+================================================================================
+MISC
+================================================================================
+Spinner.png                     # Loading animation (32x32, 8 per row, 72 frames)
+WIPIcon.png                     # Work in progress placeholder
+UnknownItemIcon.png             # Unknown item placeholder
+HighlightedLabelGradient.png    # Highlight gradient
+OptionBackgroundPatch.png       # Option background
+InputBinding.png                # Key binding display
+BlockSelectorSlotBackground.png # Block selector slot
+BlockSelectorSlotDropIcon.png   # Block selector drop icon
+
+================================================================================
+UI FILES (Templates)
+================================================================================
+Common.ui                       # Main styles and templates
+Sounds.ui                       # Sound definitions
+ActionButton.ui                 # Action button template
+TextButton.ui                   # Text button template

@@ -4,8 +4,8 @@ plugins {
     id("app.ultradev.hytalegradle") version "1.6.7"
 }
 
-group = "com.squashcompany.kits"
-version = "1.0.0"
+group = "SquashCompany"
+version = "1.0.2"
 
 java {
     toolchain {
@@ -15,18 +15,11 @@ java {
 
 repositories {
     mavenCentral()
-    maven {
-        url = uri("https://www.cursemaven.com")
-    }
 }
 
 dependencies {
     // HytaleServer.jar - provided at runtime by the server
     compileOnly(files("${property("hytaleInstallPath")}/Server/HytaleServer.jar"))
-
-    // HyUI - UI Library for Hytale
-    // Project ID: 1431415, File ID: 7493206 (v0.4.1 - latest)
-    implementation("curse.maven:hyui-1431415:7493206")
 }
 
 hytale {
@@ -39,4 +32,9 @@ hytale {
 
 tasks.shadowJar {
     archiveClassifier.set("")
+    archiveBaseName.set("sqh_kits")
+}
+
+tasks.jar {
+    archiveBaseName.set("sqh_kits")
 }
