@@ -1,0 +1,21 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+logs/
+
+# Runtime
+run/

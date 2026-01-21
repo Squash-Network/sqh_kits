@@ -1,0 +1,8 @@
+Group #KitItemIconWrapper {
+  LayoutMode: Middle;
+
+  ItemIcon #ItemIcon {
+    Anchor: (Width: 48, Height: 48);
+    Visible: true;
+  }
+}

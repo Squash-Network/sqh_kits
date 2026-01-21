@@ -1,0 +1,20 @@
+{
+    "Group": "com.squashcompany.kits",
+    "Name": "kits",
+    "Version": "1.0.0",
+    "Main": "com.squashcompany.kits.kits.Kits",
+    "ServerVersion": "*",
+    "IncludesAssetPack": true,
+    "Authors": [
+        
+    ],
+    "Dependencies": {
+        
+    },
+    "OptionalDependencies": {
+        
+    },
+    "LoadBefore": {
+        
+    }
+}
